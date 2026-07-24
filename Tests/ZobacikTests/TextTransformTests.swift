@@ -1,3 +1,4 @@
+import Foundation
 import Testing
 @testable import Zobacik
 
@@ -23,6 +24,20 @@ struct TextTransformTests {
         #expect(
             TextTransform.unquote(">   one\n>> nested\n  plain\n")
                 == "one\n> nested\n  plain\n"
+        )
+    }
+
+    @Test("Parses multiline text returned by the Slovak corpus")
+    func addDiacriticsResponse() throws {
+        let html = """
+        <div class="recinside">
+        Ahoj,<br />ako sa máš?<br /><br />Mám ťa rád &amp; ďakujem.
+        </div>
+        """
+
+        #expect(
+            try DiacriticsRestorer.restoredText(from: html)
+                == "Ahoj,\nako sa máš?\n\nMám ťa rád & ďakujem."
         )
     }
 

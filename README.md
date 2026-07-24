@@ -20,6 +20,22 @@ Příliš žluťoučký kůň. → Prilis zlutoucky kun.
 Zażółć gęślą jaźń.    → Zazolc gesla jazn.
 ```
 
+### Add Slovak Diacritics
+
+Restores diacritics in arbitrary Slovak text, using the 4-gram language model of
+the [Slovak National Corpus](https://korpus.sk/en/corpora-and-databases/snc-tools/diakritik-en/).
+The model uses surrounding words to choose between ambiguous spellings:
+
+```text
+Ahoj, ako sa mas? Mam ta rad. → Ahoj, ako sa máš? Mám ťa rád.
+```
+
+This action needs an internet connection and sends the clipboard text over HTTPS
+to the corpus service. The service reports an error rate of about one word in 500
+for standard Slovak text. Zobáčik stays exact and offline when reversing its own
+**Remove Diacritics** action: it carries the original in a private pasteboard value
+and restores it directly.
+
 ### Quote Lines
 
 Adds the traditional email and forum quote marker to every line.
@@ -76,6 +92,7 @@ the clipboard does not contain text or the chosen action would make no change.
 | Action | Shortcut |
 | --- | --- |
 | Remove Diacritics | `⌥⌘D` |
+| Add Slovak Diacritics | `⌥⌘A` |
 | Quote Lines | `⌥⌘Q` |
 | Unquote Lines | `⌥⌘U` |
 | Undo Last Transformation | `⌘Z` |
@@ -97,6 +114,8 @@ The original Zobáčik for Windows was created by **Robert Vašíček**. A
 from 2004 preserves its story and describes version 1.5.
 
 This macOS edition was created by **Jakub Petrik with OpenAI Codex**.
+Slovak restoration is powered by **DIAKRITIK** from the Slovak National Corpus
+at the Ľ. Štúr Institute of Linguistics, Slovak Academy of Sciences.
 
 ## A small poem for the old web
 
@@ -126,5 +145,6 @@ open "build/Zobáčik.app"
 ```
 
 The finished app is written in AppKit with no third-party dependencies. It has
-no Dock icon, windows, preferences, analytics, network access, or background
-helper. It reads the clipboard only when you choose an action.
+no Dock icon, windows, preferences, analytics, or background helper. It reads the
+clipboard only when you choose an action; only **Add Slovak Diacritics** uses the
+network, as described above.
