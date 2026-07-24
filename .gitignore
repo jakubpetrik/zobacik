@@ -90,6 +90,8 @@ playground.xcworkspace
 # .swiftpm
 
 .build/
+build/
+.swiftpm/
 
 # CocoaPods
 #
